@@ -16,14 +16,15 @@ public abstract class Tank implements ITank {
   // *************************
   
   // available tank colors
-  static enum TANK_COLORS {
+  public enum TANK_COLORS {
     orange, green, blue, gray
-  };
+  }
 
   // the tank color
   private TANK_COLORS tankColor = null;
 
   // this is where the specific tank sounds are gonna be stored in RAM and mapped with keys
+  // lié à l'aspect gestion de ressources évoqué le 21 décembre, à voir
   protected HashMap<String, Clip> soundsMap = new HashMap<String, Clip>();
 
   // *********************
@@ -70,7 +71,12 @@ public abstract class Tank implements ITank {
   public Clip loadFileIntoMemory(String fileUrl) {
     Clip clip = null;
     try {
-      File soundFile = new File(fileUrl);
+      //File soundFile = new File(fileUrl);
+      File soundFile = new File((this.getClass().getResource( fileUrl )).toURI()); // required to load resources in applets,
+                                              // cf. http://stackoverflow.com/questions/1763053/loading-image-in-java-applet
+                                              // ceci nÄest pas la bonne méthosde, il faut utliser des resources décarées dans
+                                              // un jar que l'on nommera TankManipulator. Penser également à éviter d'utliser
+                                              // une applet ;  utiliser à la plave une JFrame, par exemple.
 
       AudioInputStream sound = AudioSystem.getAudioInputStream(soundFile);
 

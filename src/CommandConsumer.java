@@ -7,6 +7,7 @@ public class CommandConsumer extends Thread {
 
   private CommandsQueue cmdQueue = null; // the command queue that will be used to read commands and execute them
 
+  // retirer cette déclaration et utiliser use déclaration statique dans la classe KeyboardListener
   /** AZ, QS, AS, QZ will be used as commands codes when two keys are pressed */
   private final int AZ = 6590;
   private final int QS = 8183;

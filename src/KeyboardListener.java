@@ -7,11 +7,13 @@ import java.util.Vector;
 
 public class KeyboardListener implements KeyListener {
 
+  //déclarer ces varable publiques et statiques et final ici, les réutiliser dand CommandConusmer
   /** AZ, QS, AS, QZ will be used as commands codes when two keys are pressed */
-  private final int AZ = 6590;
+  private final int AZ = 6570;
   private final int QS = 8183;
   private final int AS = 6583;
   private final int QZ = 8190;
+
   private final int StopKeyCode = KeyEvent.VK_H;
 
   private CommandsQueue cmdQueue = null; // the command queue that will be used to store commands
@@ -38,8 +40,12 @@ public class KeyboardListener implements KeyListener {
    * This method will store commands in a queue, it works in synchronization with the one which executes commands.
    * 
    * @param commandCode the code of the pressed button
-   * @param tankColorCode the selected tank to be manipulated by this command
+   * @param tank the selected tank to be manipulated by this command
    */
+
+  // déclarer toutes les méthodes qui modifient la queue de commande en synchronized
+  // (corriger le bug qui apparait lorsque l'on  tape très vite au clavier)
+
   public synchronized void enfilerCommand(int commandCode, Tank tank) {
     Command newCommand = CommandsQueue.createCommand(commandCode, tank);
     cmdQueue.enfilerCmd(newCommand);
@@ -77,6 +83,7 @@ public class KeyboardListener implements KeyListener {
         int commandeCode = -1;
         // More than one key is currently pressed.
         System.out.println("More than one key is currently pressed...");
+
         System.out.println("pressedKeys = " + pressedKey);
 
         // verify which keys are pressed
@@ -127,6 +134,8 @@ public class KeyboardListener implements KeyListener {
       // pressed
       if (!this.verifyKeyIsPressed(KeyEvent.VK_A, pressedKey) && !this.verifyKeyIsPressed(KeyEvent.VK_Q, pressedKey)
           && !this.verifyKeyIsPressed(KeyEvent.VK_Z, pressedKey) && !this.verifyKeyIsPressed(KeyEvent.VK_S, pressedKey)) {
+
+         //ici, il ne se passe rien :-(
 
          //this.enfilerCommand(StopKeyCode, this.getTanksList().get(this.getSelectedTankIndex()));
       }
