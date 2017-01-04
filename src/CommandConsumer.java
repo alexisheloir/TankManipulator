@@ -7,12 +7,6 @@ public class CommandConsumer extends Thread {
 
   private CommandsQueue cmdQueue = null; // the command queue that will be used to read commands and execute them
 
-  // retirer cette déclaration et utiliser use déclaration statique dans la classe KeyboardListener
-  /** AZ, QS, AS, QZ will be used as commands codes when two keys are pressed */
-  private final int AZ = 6590;
-  private final int QS = 8183;
-  private final int AS = 6583;
-  private final int QZ = 8190;
 
   /**
    * Constructor
@@ -35,7 +29,7 @@ public class CommandConsumer extends Thread {
     // call the method in the queue of commands to
     cmdQueue.defilerCmd();
 
-    System.out.println("Une commande vient d'etre d�fil�e et excut�e. Size of the queue is: " + this.getCmdQueue().getCommandsQueue().size());
+    System.out.println("Une commande vient d'etre defilee et excutee. Size of the queue is: " + this.getCmdQueue().getCommandsQueue().size());
 
   }
 
@@ -47,7 +41,7 @@ public class CommandConsumer extends Thread {
   public void executerCommand(Command cmd) {
 
     /* depending on the pressed key, the command will play a sound file */
-    System.out.println("executing cmd, tank color n� " + cmd.getTank().getTankColor().toString() + " and command code = " + cmd.getCommandCode());
+    System.out.println("executing cmd, tank color " + cmd.getTank().getTankColor().toString() + " and command code = " + cmd.getCommandCode());
 
     switch (cmd.getCommandCode()) {
 
@@ -68,19 +62,19 @@ public class CommandConsumer extends Thread {
       cmd.getTank().rightBackward();
       break;
 
-    case AZ: // move forward
+    case KeyboardListener.AZ: // move forward
       cmd.getTank().goForward();
       break;
 
-    case QS: // move backward
+    case KeyboardListener.QS: // move backward
       cmd.getTank().goBackward();
       break;
 
-    case AS: // self rotation clockwise
+    case KeyboardListener.AS: // self rotation clockwise
       cmd.getTank().selfRotationClockwise();
       break;
 
-    case QZ: // self rotation anti-clockwise
+    case KeyboardListener.QZ: // self rotation anti-clockwise
       cmd.getTank().selfRotationAntiClockwise();
       break;
 

@@ -9,10 +9,10 @@ public class KeyboardListener implements KeyListener {
 
   //déclarer ces varable publiques et statiques et final ici, les réutiliser dand CommandConusmer
   /** AZ, QS, AS, QZ will be used as commands codes when two keys are pressed */
-  private final int AZ = 6570;
-  private final int QS = 8183;
-  private final int AS = 6583;
-  private final int QZ = 8190;
+  public static final int AZ = 6590;
+  public static final int QS = 8183;
+  public static final int AS = 6583;
+  public static final int QZ = 8190;
 
   private final int StopKeyCode = KeyEvent.VK_H;
 
